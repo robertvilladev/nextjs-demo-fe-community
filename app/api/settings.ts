@@ -7,10 +7,8 @@ export const API_SETTINGS = {
   endpoints: {
     spotifyToken: "https://accounts.spotify.com/api/token",
     spotifyNewReleases: `${SPOTIFY_BASE_URL}/browse/new-releases`,
-    myPlaylists: `${SPOTIFY_BASE_URL}/me/playlists`,
+    audioBooks: "https://api.spotify.com/v1/audiobooks",
 
-    /*     spotifyAlbum: `${SPOTIFY_BASE_URL}/albums`,
-    spotifyArtist: `${SPOTIFY_BASE_URL}/artists`,
-    spotifySearch: `${SPOTIFY_BASE_URL}/search`, */
+    /* spotifySearch: `${SPOTIFY_BASE_URL}/search`, */
   },
 };

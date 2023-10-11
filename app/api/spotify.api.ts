@@ -1,4 +1,7 @@
-import { mapAlbumsListFromApiToVm } from "./mappers";
+import {
+  mapAlbumsListFromApiToVm,
+  mapAudioBooksListFromApiToVm,
+} from "./mappers";
 import { API_SETTINGS } from "./settings";
 
 export const getSpotifyAccessToken = async (): Promise<string> => {
@@ -32,6 +35,34 @@ export const getNewReleases = async () => {
     const data = await response.json();
 
     return mapAlbumsListFromApiToVm(data.albums.items);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAudioBooks = async () => {
+  const { audioBooks } = API_SETTINGS.endpoints;
+
+  try {
+    const token = await getSpotifyAccessToken();
+    const headers = { Authorization: `Bearer ${token}` };
+
+    const market = "US";
+    const ids = [
+      "18yVqkdbdRvS24c0Ilj2ci",
+      "1HGw3J3NxZO1TP1BTtVhpZ",
+      "7iHfbu1YPACw6oZPAFJtqe",
+      "18yVqkdbdRvS24c0Ilj2ci",
+      "1HGw3J3NxZO1TP1BTtVhpZ",
+      "7iHfbu1YPACw6oZPAFJtqe",
+    ];
+
+    const url = `${audioBooks}?ids=${ids.join(",")}&market=${market}`;
+
+    const response = await fetch(url, { headers });
+    const data = await response.json();
+
+    return mapAudioBooksListFromApiToVm(data.audiobooks);
   } catch (error) {
     console.error(error);
   }
