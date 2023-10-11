@@ -1,4 +1,5 @@
-import { AlbumType, AudioBookType } from "./types";
+import { AlbumType, AudioBookType, FullAlbumType } from "./types";
+import { parseDuration } from "./utils";
 
 export const mapAlbumsListFromApiToVm = (albums): AlbumType[] =>
   albums.map((album) => ({
@@ -17,3 +18,17 @@ export const mapAudioBooksListFromApiToVm = (audioBooks): AudioBookType[] =>
     url: audioBook.external_urls.spotify,
     authors: audioBook.authors.map((author) => author.name),
   }));
+
+export const mapFullAlbumFromApiToVm = (album): FullAlbumType => ({
+  id: album.id,
+  title: album.name,
+  artistName: album.artists[0].name,
+  releaseDate: album.release_date,
+  cover: album.images[0].url || album.images[1].url,
+  totalTracks: album.total_tracks,
+  tracks: album.tracks.items.map((track) => ({
+    id: track.id,
+    title: track.name,
+    duration: parseDuration(track.duration_ms),
+  })),
+});

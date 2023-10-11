@@ -1,8 +1,9 @@
 import {
   mapAlbumsListFromApiToVm,
   mapAudioBooksListFromApiToVm,
+  mapFullAlbumFromApiToVm,
 } from "./mappers";
-import { API_SETTINGS } from "./settings";
+import { API_SETTINGS, SPOTIFY_AUDIOBOOKS_IDS } from "./settings";
 
 export const getSpotifyAccessToken = async (): Promise<string> => {
   const {
@@ -47,22 +48,28 @@ export const getAudioBooks = async () => {
     const token = await getSpotifyAccessToken();
     const headers = { Authorization: `Bearer ${token}` };
 
-    const market = "US";
-    const ids = [
-      "18yVqkdbdRvS24c0Ilj2ci",
-      "1HGw3J3NxZO1TP1BTtVhpZ",
-      "7iHfbu1YPACw6oZPAFJtqe",
-      "18yVqkdbdRvS24c0Ilj2ci",
-      "1HGw3J3NxZO1TP1BTtVhpZ",
-      "7iHfbu1YPACw6oZPAFJtqe",
-    ];
-
-    const url = `${audioBooks}?ids=${ids.join(",")}&market=${market}`;
+    const url = `${audioBooks}?ids=${SPOTIFY_AUDIOBOOKS_IDS.join(
+      ","
+    )}&market=US`;
 
     const response = await fetch(url, { headers });
     const data = await response.json();
 
     return mapAudioBooksListFromApiToVm(data.audiobooks);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAlbumById = async (albumId: string) => {
+  const { spotifyAlbumById } = API_SETTINGS.endpoints;
+  try {
+    const token = await getSpotifyAccessToken();
+    const headers = { Authorization: `Bearer ${token}` };
+    const response = await fetch(`${spotifyAlbumById}/${albumId}`, { headers });
+
+    const data = await response.json();
+    return mapFullAlbumFromApiToVm(data);
   } catch (error) {
     console.error(error);
   }

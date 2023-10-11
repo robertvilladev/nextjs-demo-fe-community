@@ -1,8 +1,7 @@
-import React from "react";
-import { getNewReleases } from "../api/spotify.api";
-import AlbumCard from "./AlbumCard";
+import AlbumCard from "../components/AlbumCard";
+import { getNewReleases } from "../../api/spotify.api";
 
-export default async function NewReleasesList() {
+export default async function AlbumsPage() {
   const newReleases = await getNewReleases();
 
   return (

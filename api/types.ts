@@ -13,3 +13,14 @@ export type AudioBookType = {
   cover: string;
   authors: string[];
 };
+
+export type FullAlbumType = AlbumType & {
+  totalTracks: number;
+  tracks: TrackType[];
+};
+
+export type TrackType = {
+  id: string;
+  title: string;
+  duration: number;
+};

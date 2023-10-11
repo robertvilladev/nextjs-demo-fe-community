@@ -3,6 +3,7 @@ import React from "react";
 
 const sections = [
   { name: "Home", route: "/" },
+  { name: "Albums", route: "/albums" },
   { name: "AudioBooks", route: "/audiobooks" },
   { name: "Profile", route: "/profile" }, // example of 404 route
 ];

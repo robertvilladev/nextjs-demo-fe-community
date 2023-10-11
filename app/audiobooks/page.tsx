@@ -1,7 +1,14 @@
-import React from "react";
-import { getAudioBooks } from "../api/spotify.api";
-import Image from "next/image";
+import { Metadata } from "next";
+
 import Link from "next/link";
+import Image from "next/image";
+
+import { getAudioBooks } from "../../api/spotify.api";
+
+export const metadata: Metadata = {
+  title: "AudioBooks",
+  description: "AudioBooks - The best AudioBooks in the world",
+};
 
 export default async function AudioBooksPage() {
   const audioBooks = await getAudioBooks();
@@ -13,9 +20,9 @@ export default async function AudioBooksPage() {
       </h1>
 
       <div className="grid grid-cols-2 gap-12 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
-        {audioBooks.map((audioBook) => (
+        {audioBooks.map((audioBook, index) => (
           <div
-            key={audioBook.id}
+            key={audioBook.id + index}
             className=" flex flex-row gap-12 cursor-pointer hover:opacity-75 transition ease-in-out duration-150 rounded-lg hover:border-transparent hover:ring-2 hover:ring-offset-2 hover:ring-gray-500 px-4 py-6
           "
           >

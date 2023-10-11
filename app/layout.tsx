@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "My Music App - Home",
+  title: "Home - My Music App",
   description: "A music app built with Next.js and Tailwind CSS",
 };
 
