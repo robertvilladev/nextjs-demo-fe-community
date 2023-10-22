@@ -1,5 +1,5 @@
-import { AlbumType, AudioBookType, FullAlbumType } from "./types";
-import { parseDuration } from "./utils";
+import { AlbumType, AudioBookType, FullAlbumType } from "@api/types";
+import { parseDuration } from "@api/utils";
 
 export const mapAlbumsListFromApiToVm = (albums): AlbumType[] =>
   albums.map((album) => ({

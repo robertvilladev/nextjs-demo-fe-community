@@ -1,5 +1,5 @@
-import AlbumCard from "../components/AlbumCard";
-import { getNewReleases } from "../../api/spotify.api";
+import AlbumCard from "@/components/AlbumCard";
+import { getNewReleases } from "@/api/spotify.api";
 
 const AlbumsPage = async () => {
   const newReleases = await getNewReleases();

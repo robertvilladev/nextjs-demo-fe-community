@@ -1,6 +1,6 @@
-import Navigation from "./components/Navigation";
-import "./globals.css";
+import Navigation from "@/components/Navigation";
 import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,7 +9,7 @@ export const metadata = {
   description: "A music app built with Next.js and Tailwind CSS",
 };
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -18,4 +18,6 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

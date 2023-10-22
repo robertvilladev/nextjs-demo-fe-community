@@ -1,9 +1,9 @@
 import {
+  mapFullAlbumFromApiToVm,
   mapAlbumsListFromApiToVm,
   mapAudioBooksListFromApiToVm,
-  mapFullAlbumFromApiToVm,
-} from "./mappers";
-import { API_SETTINGS, SPOTIFY_AUDIOBOOKS_IDS } from "./settings";
+} from "@/api/mappers";
+import { API_SETTINGS, SPOTIFY_AUDIOBOOKS_IDS } from "@/api/settings";
 
 export const getSpotifyAccessToken = async (): Promise<string> => {
   const {
@@ -20,7 +20,12 @@ export const getSpotifyAccessToken = async (): Promise<string> => {
     client_secret: clientSecret,
   });
 
-  const response = await fetch(spotifyToken, { method: "POST", headers, body });
+  const response = await fetch(spotifyToken, {
+    method: "POST",
+    headers,
+    body,
+    cache: "no-cache",
+  });
   const data = await response.json();
   return data.access_token;
 };

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { AlbumType } from "../../api/types";
+import { AlbumType } from "@api/types";
 
 type AlbumCardProps = AlbumType;
 

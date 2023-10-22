@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { getAlbumById } from "../../../api/spotify.api";
-
 import type { Metadata } from "next";
+import { getAlbumById } from "@api/spotify.api";
+import LikeButton from "@/components/LikeButton";
 
 type Props = {
   params: { albumId: string };
@@ -9,8 +9,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const albumId = params.albumId;
-  // Explain API fetch is memoized in the server,
-  //so it's not a problem to call it here and then in the page
+  // API fetch is memoized in the server,
+  //so it's not a problem to call it here and then in the component
   const albumData = await getAlbumById(albumId);
 
   return {
@@ -52,12 +52,12 @@ const AlbumPage = async ({ params }: Props) => {
         </div>
       </div>
 
-      <div className="px-4 py-12 max-w-4xl mx-auto ">
+      <div className="px-4 py-12 max-w-4xl mx-auto">
         {albumData.tracks.map((track, index) => (
           <div
             key={track.id}
             className="flex justify-between gap-4 text-white text-xl mb-2
-            hover:bg-gray-700 p-4 rounded-md cursor-pointer transition-colors duration-200 ease-in-out
+            hover:bg-gray-700 p-4 rounded-md transition-colors duration-200 ease-in-out
             "
           >
             <p className="w-1/2">
@@ -68,9 +68,14 @@ const AlbumPage = async ({ params }: Props) => {
 
               {track.title}
             </p>
-            <p className="w-1/2 text-right">
-              {track.duration.toLocaleString()}
-            </p>
+
+            <div className="flex justify-between items-center gap-6">
+              {/*  <LikeButton /> */}
+
+              <p className="w-1/2 text-right">
+                {track.duration.toLocaleString()}
+              </p>
+            </div>
           </div>
         ))}
       </div>

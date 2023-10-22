@@ -3,14 +3,14 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-import { getAudioBooks } from "../../api/spotify.api";
+import { getAudioBooks } from "@api/spotify.api";
 
 export const metadata: Metadata = {
   title: "AudioBooks",
   description: "AudioBooks - The best AudioBooks in the world",
 };
 
-export default async function AudioBooksPage() {
+const AudioBooksPage = async () => {
   const audioBooks = await getAudioBooks();
 
   return (
@@ -58,4 +58,6 @@ export default async function AudioBooksPage() {
       </div>
     </div>
   );
-}
+};
+
+export default AudioBooksPage;
