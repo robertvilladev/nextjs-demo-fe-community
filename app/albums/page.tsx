@@ -1,7 +1,7 @@
 import AlbumCard from "../components/AlbumCard";
 import { getNewReleases } from "../../api/spotify.api";
 
-export default async function AlbumsPage() {
+const AlbumsPage = async () => {
   const newReleases = await getNewReleases();
 
   return (
@@ -17,4 +17,6 @@ export default async function AlbumsPage() {
       </div>
     </div>
   );
-}
+};
+
+export default AlbumsPage;

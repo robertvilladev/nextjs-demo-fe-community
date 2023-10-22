@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function AlbumPage({ params }: Props) {
+const AlbumPage = async ({ params }: Props) => {
   const albumId = params.albumId;
   const albumData = await getAlbumById(albumId);
 
@@ -76,4 +76,6 @@ export default async function AlbumPage({ params }: Props) {
       </div>
     </div>
   );
-}
+};
+
+export default AlbumPage;
